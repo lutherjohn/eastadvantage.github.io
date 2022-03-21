@@ -1,6 +1,6 @@
 <template>
-  <header>
-    <h1>test</h1>
+  <header class="mb-3">
+    <h1>East Vantage Assessment</h1>
   </header>
 </template>
 

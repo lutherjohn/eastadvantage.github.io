@@ -1,6 +1,7 @@
 <template>
   <div class="container">
-    <div class="mb-3">
+    <div class="mb-6">
+        <div class="mb-3">
       <label for="exampleFormControlInput1" class="form-label"
         >Title</label
       >
@@ -40,7 +41,7 @@
     <div class="mb-3">
         <button class="btn btn-primary btn-lg" @click="saveData">Submit</button>
     </div>
-
+    </div>
   </div>
 </template>
 <script>
@@ -57,7 +58,7 @@ export default {
      async saveData() {
           //console.log( this.date );
           const newField = {
-              id: Math.floor(Math.random() * 100000),
+            //   id: Math.floor(Math.random() * 100000),
               title: this.title,
               content: this.content,
               date: this.date
@@ -68,29 +69,8 @@ export default {
           this.title = ""
           this.content = ""
           this.date = ""
-
-        //   const res = await fetch('api/crud',{
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //   },
-        //   body: JSON.stringify(data)
-        //   })
-
-        //   const save = await res.json();
-        //   this.datas = [...this.datas, save];
           
-      },
-    //   async fetchNews() {
-    //       const res = await fetch('api/crud')
-
-    //       const data = await res.json();
-
-    //       return data;
-    //   }
-  },
-  created() {
-      //this.news = await this.fetchNews();
+      }
   }
 };
 </script>
