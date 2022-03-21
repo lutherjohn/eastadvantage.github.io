@@ -1,17 +1,58 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Header />
+    <Form @add-field="addField" />
+    <News @delete-field="deleteField" :fields="fields"/>
+
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Header from './components/Header';
+import Form from './components/Form';
+import News from './components/News';
 
 export default {
   name: 'App',
+  data: () => ({
+    fields: []
+  }),
   components: {
-    HelloWorld
+    Header,
+    Form,
+    News
+  },
+  methods: {
+    addField(field) {
+      this.fields = [...this.fields, field]
+    },
+    deleteField(id) {
+      if(confirm("Are you sure you want to delete this field?")) {
+        this.fields = this.fields.filter((field) => field.id !== id)
+      } 
+    }
+  },
+  created() {
+    this.fields = [
+      {
+          "id": "1",
+          "title": "Sample Title 1",
+          "content": "Sample Content",
+          "date": "2022-03-21"
+      },
+      {
+          "id": "2",
+          "title": "Sample Title 2",
+          "content": "Sample Content",
+          "date": "2022-03-24"
+      },
+      {
+          "id": "3",
+          "title": "Sample Title 3",
+          "content": "Sample Long Content",
+          "date": "2022-03-24"
+      }
+    ];
   }
 }
 </script>

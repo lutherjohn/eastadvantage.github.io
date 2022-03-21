@@ -1,0 +1,16 @@
+{
+    "crud": [
+        {
+            "id": "1",
+            "title": "Sample Title 1",
+            "content": "Sample Content",
+            "date": "2022-03-21"
+        },
+        {
+            "id": "2",
+            "title": "Sample Title 2",
+            "content": "Sample Content",
+            "date": "2022-03-24"
+        }
+    ]
+}
