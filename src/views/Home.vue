@@ -13,6 +13,7 @@
       </div>
       <div class="col-9">
         <DataTable
+          @adding-field="addingField" :isDisabled="isDisabled"
           @delete-field="deleteField"
           :fields="fields"
           @edit-field="editField"
@@ -33,6 +34,7 @@ export default {
     updateForm: false,
     addForm: true,
     field: {},
+    isDisabled: true
   }),
   components: {
     Form,
@@ -40,6 +42,11 @@ export default {
     UpdateForm,
   },
   methods: {
+    addingField() {
+      this.addForm = true;
+      this.updateForm = false;
+      this.isDisabled = true;
+    },
     async addField(field) {
       const res = await fetch("api/fields", {
         method: "POST",
@@ -79,11 +86,13 @@ export default {
     },
     async editField(id) {
       this.updateForm = true;
+      this.isDisabled = false;
       this.addForm = false;
       this.field = await this.fetchFieldsValue(id);
     },
     async updFields(updateField) {
       this.updateForm = false;
+      this.isDisabled = true;
       this.addForm = true;
 
       const res = await fetch(`api/fields/${updateField.id}`, {

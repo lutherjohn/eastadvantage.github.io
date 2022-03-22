@@ -1,5 +1,10 @@
 <template>
   <div class="container">
+    <div class="d-flex flex-row-reverse bd-highlight">
+      <button type="button" class="btn btn-secondary" @click="onAdd" :disabled="isDisabled">
+        Add New
+      </button>
+    </div>
     <div>
       <table class="table table-hover">
         <thead>
@@ -18,9 +23,21 @@
               <td>{{ field.content }}</td>
               <td>{{ field.date }}</td>
               <td>
-                <button type="button" class="btn btn-danger" @click="onDelete(field.id)">Delete</button>
+                <button
+                  type="button"
+                  class="btn btn-info"
+                  @click="onUpdate(field.id)"
+                >
+                  Edit
+                </button>
                 &nbsp;
-                <button type="button" class="btn btn-info" @click="onUpdate(field.id)">Edit</button>
+                <button
+                  type="button"
+                  class="btn btn-danger"
+                  @click="onDelete(field.id)"
+                >
+                  Delete
+                </button>
               </td>
             </tr>
           </tbody>
@@ -35,14 +52,18 @@ export default {
   name: "DataTable",
   props: {
     fields: Array,
+    isDisabled: false,
   },
   methods: {
+    onAdd() {
+      this.$emit("adding-field");
+    },
     onDelete(id) {
       this.$emit("delete-field", id);
     },
     onUpdate(id) {
       this.$emit("edit-field", id);
-    }
+    },
   },
 };
 </script>
