@@ -1,24 +1,36 @@
 <template>
   <div id="app">
-    <Header :text="text"/>
-    <Home />
+    <div class="d-grid gap-3">
+      <div class="p-2 bg-light border">
+        <Header :text="text" />
+      </div>
+      <div class="p-2 bg-light border">
+        <Home />
+      </div>
+
+      <Footer />
+    </div>
+    
+    
   </div>
 </template>
 
 <script>
-import Header from './components/Header';
-import Home from './views/Home';
+import Header from "./components/Header";
+import Home from "./views/Home";
+import Footer from "./components/Footer";
 
 export default {
-  name: 'App',
+  name: "App",
   data: () => ({
-    text: "East Advantage Assesment"
+    text: "East Advantage Assesment",
   }),
   components: {
     Header,
-    Home
-  }
-}
+    Home,
+    Footer
+  },
+};
 </script>
 
 <style>

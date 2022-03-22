@@ -1,15 +1,24 @@
 <template>
-  <div>
-    <div v-show="addForm">
-      <Form @add-field="addField" />
-    </div>    
-    <div v-show="updateForm">
-      <UpdateForm @updfields="updFields" :field="field" />
+  <div class="container">
+    <div class="row">
+      <div class="col-3">
+        <div class="mb-3">
+          <div v-show="addForm">
+            <Form @add-field="addField" />
+          </div>
+          <div v-show="updateForm">
+            <UpdateForm @updfields="updFields" :field="field" />
+          </div>
+        </div>
+      </div>
+      <div class="col-9">
+        <DataTable
+          @delete-field="deleteField"
+          :fields="fields"
+          @edit-field="editField"
+        />
+      </div>
     </div>
-    <DataTable 
-    @delete-field="deleteField" :fields="fields"
-    @edit-field="editField"  
-    />
   </div>
 </template>
 
@@ -20,15 +29,15 @@ import DataTable from "../components/DataTable";
 export default {
   name: "Home",
   data: () => ({
-      fields: [],
-      updateForm: false,
-      addForm: true,
-      field: {}
+    fields: [],
+    updateForm: false,
+    addForm: true,
+    field: {},
   }),
   components: {
     Form,
     DataTable,
-    UpdateForm
+    UpdateForm,
   },
   methods: {
     async addField(field) {
@@ -44,18 +53,18 @@ export default {
       this.fields = [...this.fields, data];
     },
     async deleteField(id) {
-      if(confirm("Are you sure you want to delete this field?")) {
+      if (confirm("Are you sure you want to delete this field?")) {
         const res = await fetch(`api/fields/${id}`, {
-          method: 'DELETE'
-        })
+          method: "DELETE",
+        });
 
-        res.status === 200 
-        ? (this.fields = this.fields.filter((field) => field.id !== id))
-        : alert("Error on deleting this field")
-      } 
+        res.status === 200
+          ? (this.fields = this.fields.filter((field) => field.id !== id))
+          : alert("Error on deleting this field");
+      }
     },
     async fetchFields() {
-      const res = await fetch('api/fields');
+      const res = await fetch("api/fields");
 
       const data = await res.json();
 
@@ -67,7 +76,6 @@ export default {
       const data = await res.json();
 
       return data;
-
     },
     async editField(id) {
       this.updateForm = true;
@@ -89,10 +97,10 @@ export default {
       const data = await res.json();
 
       this.fields = await this.fetchFields();
-    }
+    },
   },
   async created() {
     this.fields = await this.fetchFields();
-  }
+  },
 };
 </script>

@@ -1,40 +1,42 @@
 <template>
-  <div class="container">
-    <div class="mb-6">
-      <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">Title</label>
-        <input
-          type="text"
-          v-model="title"
-          class="form-control"
-          id="title"
-          placeholder="Title"
-        />
-      </div>
-      <div class="mb-3">
-        <label for="content" class="form-label">Content</label>
-        <textarea
-          class="form-control"
-          id="content"
-          rows="3"
-          v-model="content"
-        ></textarea>
-      </div>
+  <div class="crud-form">
+    <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label">Title</label>
+      <input
+        type="text"
+        v-model="title"
+        class="form-control"
+        id="title"
+        placeholder="Title"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="content" class="form-label">Content</label>
+      <textarea
+        class="form-control"
+        id="content"
+        rows="3"
+        v-model="content"
+      ></textarea>
+    </div>
 
-      <div class="mb-3">
-        <label for="content" class="form-label">Date</label>
-        <input
-          type="date"
-          v-model="date"
-          class="form-control"
-          id="date"
-          placeholder="Date"
-        />
-      </div>
+    <div class="mb-3">
+      <label for="content" class="form-label">Date</label>
+      <input
+        type="date"
+        v-model="date"
+        class="form-control"
+        id="date"
+        placeholder="Date"
+      />
+    </div>
 
-      <div class="mb-3">
-        <Button @btn-click="saveData" class="btn btn-primary btn-lg" text="Submit" />
-      </div>
+    <div class="mb-3">
+      <Button
+        @btn-click="saveData"
+        class="btn btn-primary btn-lg"
+        text="Submit"
+      />
     </div>
   </div>
 </template>
@@ -50,7 +52,7 @@ export default {
     title: "",
     content: "",
     date: "",
-    datas: []
+    datas: [],
   }),
   methods: {
     async saveData() {
@@ -71,4 +73,5 @@ export default {
   },
 };
 </script>
-<style scoped></style>
+<style scoped>
+</style>
