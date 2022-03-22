@@ -3,8 +3,10 @@
 ## Project setup
 ```
 npm install
-```
 
+```
+## Backend Temporary Server to run the database.json
+npm run backend
 ### Compiles and hot-reloads for development
 ```
 npm run serve

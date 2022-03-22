@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Header />
+    <Header :text="text"/>
     <Home />
   </div>
 </template>
@@ -11,6 +11,9 @@ import Home from './views/Home';
 
 export default {
   name: 'App',
+  data: () => ({
+    text: "East Advantage Assesment"
+  }),
   components: {
     Header,
     Home

@@ -1,12 +1,15 @@
 <template>
   <header class="mb-3">
-    <h1>East Vantage Assessment</h1>
+    <h1> {{ text }} </h1>
   </header>
 </template>
 
 <script>
 export default {
-  name: 'Header'
+  name: 'Header',
+  props: {
+    text: String
+  }
 }
 </script>
 
