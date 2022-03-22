@@ -32,7 +32,7 @@
 
 <script>
 export default {
-  name: "News",
+  name: "DataTable",
   props: {
     fields: Array,
   },

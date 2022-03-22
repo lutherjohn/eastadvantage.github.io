@@ -6,7 +6,7 @@
     <div v-show="updateForm">
       <UpdateForm @updfields="updFields" :field="field" />
     </div>
-    <News 
+    <DataTable 
     @delete-field="deleteField" :fields="fields"
     @edit-field="editField"  
     />
@@ -16,7 +16,7 @@
 <script>
 import Form from "../components/Form";
 import UpdateForm from "../components/UpdateForm";
-import News from "../components/News";
+import DataTable from "../components/DataTable";
 export default {
   name: "Home",
   data: () => ({
@@ -27,7 +27,7 @@ export default {
   }),
   components: {
     Form,
-    News,
+    DataTable,
     UpdateForm
   },
   methods: {
