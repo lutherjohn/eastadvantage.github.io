@@ -7,34 +7,16 @@
       "date": "2022-03-21"
     },
     {
-      "id": 25382,
-      "title": "test45455",
-      "content": "hlhlhlhlhlbk,bkblkglhlhlhlh",
-      "date": "2022-03-17"
+      "id": "2",
+      "title": "Sample Title 2",
+      "content": "Second Content",
+      "date": "2022-03-25"
     },
     {
-      "title": "new data",
-      "content": "taas ra",
-      "date": "2022-04-02",
-      "id": 25385
-    },
-    {
-      "title": "Edited 456",
-      "content": "Msrch 678",
-      "date": "2022-06-30",
-      "id": 25386
-    },
-    {
-      "title": "loppoooooo",
-      "content": "hhkhkh",
-      "date": "2022-03-31",
-      "id": 25387
-    },
-    {
-      "title": "sample 45",
-      "content": "testing 401",
-      "date": "2022-05-25",
-      "id": 25388
+      "id": "3",
+      "title": "Sample Title 3",
+      "content": "Third Content",
+      "date": "2022-04-25"
     }
   ]
 }
