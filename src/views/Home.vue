@@ -1,21 +1,34 @@
 <template>
   <div>
-    <Form @add-field="addField" />
-    <News @delete-field="deleteField" :fields="fields"/>
+    <div v-show="addForm">
+      <Form @add-field="addField" />
+    </div>    
+    <div v-show="updateForm">
+      <UpdateForm @updfields="updFields" :field="field" />
+    </div>
+    <News 
+    @delete-field="deleteField" :fields="fields"
+    @edit-field="editField"  
+    />
   </div>
 </template>
 
 <script>
 import Form from "../components/Form";
+import UpdateForm from "../components/UpdateForm";
 import News from "../components/News";
 export default {
   name: "Home",
   data: () => ({
-      fields: []
+      fields: [],
+      updateForm: false,
+      addForm: true,
+      field: {}
   }),
   components: {
     Form,
-    News
+    News,
+    UpdateForm
   },
   methods: {
     async addField(field) {
@@ -47,6 +60,35 @@ export default {
       const data = await res.json();
 
       return data;
+    },
+    async fetchFieldsValue(id) {
+      const res = await fetch(`api/fields/${id}`);
+
+      const data = await res.json();
+
+      return data;
+
+    },
+    async editField(id) {
+      this.updateForm = true;
+      this.addForm = false;
+      this.field = await this.fetchFieldsValue(id);
+    },
+    async updFields(updateField) {
+      this.updateForm = false;
+      this.addForm = true;
+
+      const res = await fetch(`api/fields/${updateField.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(this.field),
+      });
+
+      const data = await res.json();
+
+      this.fields = await this.fetchFields();
     }
   },
   async created() {

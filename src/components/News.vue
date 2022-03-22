@@ -38,9 +38,11 @@ export default {
   },
   methods: {
     onDelete(id) {
-      console.log(id);
       this.$emit("delete-field", id);
     },
+    onUpdate(id) {
+      this.$emit("edit-field", id);
+    }
   },
 };
 </script>

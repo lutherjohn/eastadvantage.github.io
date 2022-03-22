@@ -5,7 +5,7 @@
         <label for="exampleFormControlInput1" class="form-label">Title</label>
         <input
           type="text"
-          v-model="title"
+          v-model="field.title"
           class="form-control"
           id="title"
           placeholder="Title"
@@ -17,7 +17,7 @@
           class="form-control"
           id="content"
           rows="3"
-          v-model="content"
+          v-model="field.content"
         ></textarea>
       </div>
 
@@ -25,7 +25,7 @@
         <label for="content" class="form-label">Date</label>
         <input
           type="date"
-          v-model="date"
+          v-model="field.date"
           class="form-control"
           id="date"
           placeholder="Date"
@@ -33,7 +33,7 @@
       </div>
 
       <div class="mb-3">
-        <Button @btn-click="saveData" class="btn btn-primary btn-lg" text="Submit" />
+        <Button @btn-click="updateFormFields" class="btn btn-success btn-lg" text="Update" />
       </div>
     </div>
   </div>
@@ -42,31 +42,26 @@
 import Button from "./Button";
 
 export default {
-  name: "Form",
+  name: "UpdateForm",
   components: {
     Button,
   },
-  data: () => ({
-    title: "",
-    content: "",
-    date: "",
-    datas: []
-  }),
+  props: {
+      field: Object
+  },
   methods: {
-    async saveData() {
-      //console.log( this.date );
-      const newField = {
+    async updateFormFields() {
+      const updateField = {
         //   id: Math.floor(Math.random() * 100000),
-        title: this.title,
-        content: this.content,
-        date: this.date,
+        id: this.field.id,
+        title: this.field.title,
+        content: this.field.content,
+        date: this.field.date,
       };
 
-      this.$emit("add-field", newField);
+      console.log({UpdateFormData: updateField});
 
-      this.title = "";
-      this.content = "";
-      this.date = "";
+      this.$emit("updfields", updateField);
     },
   },
 };
