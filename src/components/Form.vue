@@ -3,39 +3,39 @@
     <div class="mb-3">
       <label for="exampleFormControlInput1" class="form-label">Title</label>
       <input
-        type="text"
-        v-model="title"
-        class="form-control"
-        id="title"
-        placeholder="Title"
+          type="text"
+          v-model="title"
+          class="form-control"
+          id="title"
+          placeholder="Title"
       />
     </div>
     <div class="mb-3">
       <label for="content" class="form-label">Content</label>
       <textarea
-        class="form-control"
-        id="content"
-        rows="3"
-        v-model="content"
+          class="form-control"
+          id="content"
+          rows="3"
+          v-model="content"
       ></textarea>
     </div>
 
     <div class="mb-3">
       <label for="content" class="form-label">Date</label>
       <input
-        type="date"
-        v-model="date"
-        class="form-control"
-        id="date"
-        placeholder="Date"
+          type="date"
+          v-model="date"
+          class="form-control"
+          id="date"
+          placeholder="Date"
       />
     </div>
 
     <div class="mb-3">
       <Button
-        @btn-click="saveData"
-        class="btn btn-primary btn-lg"
-        text="Submit"
+          @btn-click="saveData"
+          class="btn btn-primary btn-lg"
+          text="Submit"
       />
     </div>
   </div>
@@ -44,6 +44,7 @@
 import Button from "./Button";
 
 export default {
+  // eslint-disable-next-line vue/multi-word-component-names
   name: "Form",
   components: {
     Button,

@@ -13,11 +13,14 @@
       </div>
       <div class="col-9">
         <DataTable
-          @adding-field="addingField" :isDisabled="isDisabled"
-          @delete-field="deleteField"
-          :fields="fields"
-          @edit-field="editField"
+            @adding-field="addingField" :isDisabled="isDisabled"
+            @delete-field="deleteField"
+            :fields="fields"
+            @edit-field="editField"
         />
+        <div>
+          <Pagination :pageNum="pageNum"/>
+        </div>
       </div>
     </div>
   </div>
@@ -27,7 +30,10 @@
 import Form from "../components/Form";
 import UpdateForm from "../components/UpdateForm";
 import DataTable from "../components/DataTable";
+import Pagination from "../components/Pagination";
+
 export default {
+  // eslint-disable-next-line vue/multi-word-component-names
   name: "Home",
   data: () => ({
     fields: [],
@@ -40,6 +46,12 @@ export default {
     Form,
     DataTable,
     UpdateForm,
+    Pagination
+  },
+  computed: {
+    pageNum() {
+      return this.fields.length;
+    }
   },
   methods: {
     addingField() {
@@ -66,8 +78,8 @@ export default {
         });
 
         res.status === 200
-          ? (this.fields = this.fields.filter((field) => field.id !== id))
-          : alert("Error on deleting this field");
+            ? (this.fields = this.fields.filter((field) => field.id !== id))
+            : alert("Error on deleting this field");
       }
     },
     async fetchFields() {
