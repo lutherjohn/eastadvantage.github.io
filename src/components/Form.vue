@@ -1,7 +1,7 @@
 <template>
   <div class="crud-form">
     <div class="mb-3">
-      <label for="exampleFormControlInput1" class="form-label">Title</label>
+      <label for="title" class="form-label">Title</label>
       <input
           type="text"
           v-model="title"

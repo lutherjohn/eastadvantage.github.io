@@ -40,7 +40,9 @@ export default {
     updateForm: false,
     addForm: true,
     field: {},
-    isDisabled: true
+    isDisabled: true,
+    currentPage: 1,
+    perPage: 5
   }),
   components: {
     Form,
