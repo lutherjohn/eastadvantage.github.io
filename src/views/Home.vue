@@ -31,12 +31,12 @@ import Form from "../components/Form";
 import UpdateForm from "../components/UpdateForm";
 import DataTable from "../components/DataTable";
 import Pagination from "../components/Pagination";
+import { mapState } from "vuex";
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Home",
   data: () => ({
-    fields: [],
     updateForm: false,
     addForm: true,
     field: {},
@@ -51,6 +51,9 @@ export default {
     Pagination
   },
   computed: {
+    ...mapState({
+      fields: state => state.DataTable.fields
+    }),
     pageNum() {
       return this.fields.length;
     }
@@ -85,11 +88,7 @@ export default {
       }
     },
     async fetchFields() {
-      const res = await fetch("api/fields");
-
-      const data = await res.json();
-
-      return data;
+      this.$store.dispatch("DataTable/getFields");
     },
     async fetchFieldsValue(id) {
       const res = await fetch(`api/fields/${id}`);
@@ -123,7 +122,7 @@ export default {
     },
   },
   async created() {
-    this.fields = await this.fetchFields();
+    this.fetchFields();
   },
 };
 </script>
