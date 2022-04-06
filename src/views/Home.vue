@@ -87,7 +87,7 @@ export default {
             : alert("Error on deleting this field");
       }
     },
-    async fetchFields() {
+    fetchFields() {
       this.$store.dispatch("DataTable/getFields");
     },
     async fetchFieldsValue(id) {

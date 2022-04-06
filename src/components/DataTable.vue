@@ -28,7 +28,7 @@
                   class="btn btn-info"
                   @click="onUpdate(field.id)"
               >
-                Edit
+                <font-awesome-icon icon="fa-solid fa-pen-to-square" />
               </button>
               &nbsp;
               <button
@@ -36,7 +36,7 @@
                   class="btn btn-danger"
                   @click="onDelete(field.id)"
               >
-                Delete
+                <font-awesome-icon icon="fa-solid fa-trash-can" />
               </button>
             </td>
           </tr>

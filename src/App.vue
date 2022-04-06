@@ -10,8 +10,7 @@
 
       <Footer />
     </div>
-    
-    
+
   </div>
 </template>
 
