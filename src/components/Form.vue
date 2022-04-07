@@ -24,10 +24,9 @@
       <label for="content" class="form-label">Date</label>
       <input
           type="date"
-          v-model="date"
+          v-model="computedFormatDate"
           class="form-control"
           id="date"
-          placeholder="Date"
       />
     </div>
 
@@ -42,6 +41,7 @@
 </template>
 <script>
 import Button from "./Button";
+import moment from "moment"
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
@@ -50,13 +50,24 @@ export default {
     Button,
   },
   data: () => ({
+    date: new Date().toISOString().substr(0, 10),
     title: "",
     content: "",
-    date: "",
     datas: [],
   }),
+  computed: {
+    computedFormatDate() {
+      return moment(this.date).format("MMMM Do YYYY")
+    }
+  },
   methods: {
-    async saveData() {
+    formatDate(date) {
+      if (!date) return null;
+
+      const [year, month, day] = date.split("-");
+      return `${month}/${day}/${year}`;
+    },
+    saveData() {
       //console.log( this.date );
       const newField = {
         //   id: Math.floor(Math.random() * 100000),

@@ -1,20 +1,28 @@
 import Vue from "vue";
-import Router from "vue-router";
-import layout from "@/layout";
+import VueRouter from "vue-router";
+import DataList from "../views/DataList";
+import Card from "../views/Card"
 
-Vue.use(Router);
+Vue.use(VueRouter);
 
 const routes = [
     {
-        path: "/dataTable",
-        component: layout
+        path: "/",
+        name: "Home",
+        component: Card
+    },
+    {
+        path: "/datalist",
+        name: "DataList",
+        component: DataList
     }
+
 ]
 
-const router = new Router({
-    routes,
-    base: process.env.BASE_URL,
+const router = new VueRouter({
     mode: "history",
+    base: process.env.BASE_URL,
+    routes
 });
 
 export default router;

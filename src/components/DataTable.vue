@@ -1,12 +1,15 @@
 <template>
 <div class="container">
-    <div class="d-flex flex-row-reverse bd-highlight">
-      <button type="button" class="btn btn-secondary" @click="onAdd" :disabled="isDisabled">
-        Add New
-      </button>
+    <div class="d-flex justify-content-between mb-4">
+      <input placeholder="Search" v-model="searchQuery"/>
+      <div class="d-flex">
+        <button type="button" class="btn btn-secondary" @click="onAdd" :disabled="isDisabled">
+          Add New
+        </button>
+      </div>
     </div>
-    <div>
-      <table class="table table-hover">
+    <div class="table-responsive-sm">
+      <table v-if="fields.length" class="table table-hover">
         <thead>
         <tr>
           <th scope="col">#</th>
@@ -15,7 +18,7 @@
           <th scope="col">Date</th>
         </tr>
         </thead>
-        <template v-for="field in fields">
+        <template v-for="field in resultQuery">
           <tbody :key="field.id">
           <tr>
             <th scope="row">{{ field.id }}</th>
@@ -50,9 +53,23 @@
 <script>
 export default {
   name: "DataTable",
+  data: () => ({
+    searchQuery: null
+  }),
   props: {
     fields: Array,
     isDisabled: Boolean
+  },
+  computed: {
+    resultQuery(){
+      if(this.searchQuery){
+        return this.fields.filter((item)=>{
+          return this.searchQuery.toLowerCase().split(' ').every(v => item.title.toLowerCase().includes(v))
+        })
+      }else{
+        return this.fields;
+      }
+    }
   },
   methods: {
     onAdd() {
@@ -63,8 +80,8 @@ export default {
     },
     onUpdate(id) {
       this.$emit("edit-field", id);
-    },
-  },
+    }
+  }
 };
 </script>
 <style scoped>
