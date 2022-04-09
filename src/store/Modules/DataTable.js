@@ -14,5 +14,10 @@ export default  {
 
             commit("SET_FIELDS", data);
         }
+    },
+    getters: {
+        fieldLength: state => {
+            return state.fields.length
+        }
     }
 }

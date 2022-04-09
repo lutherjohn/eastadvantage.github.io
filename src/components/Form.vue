@@ -35,6 +35,7 @@
           @btn-click="saveData"
           class="btn btn-primary btn-lg"
           text="Submit"
+          style="--bs-text-opacity: .5;"
       />
     </div>
   </div>
@@ -52,8 +53,7 @@ export default {
   data: () => ({
     date: new Date().toISOString().substr(0, 10),
     title: "",
-    content: "",
-    datas: [],
+    content: ""
   }),
   computed: {
     computedFormatDate() {
@@ -61,12 +61,6 @@ export default {
     }
   },
   methods: {
-    formatDate(date) {
-      if (!date) return null;
-
-      const [year, month, day] = date.split("-");
-      return `${month}/${day}/${year}`;
-    },
     saveData() {
       //console.log( this.date );
       const newField = {

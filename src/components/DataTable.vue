@@ -24,7 +24,7 @@
             <th scope="row">{{ field.id }}</th>
             <td>{{ field.title }}</td>
             <td>{{ field.content }}</td>
-            <td>{{ field.date }}</td>
+            <td>{{ formatDate(field.date) }}</td>
             <td>
               <button
                   type="button"
@@ -51,6 +51,8 @@
 </template>
 
 <script>
+import moment from "moment";
+
 export default {
   name: "DataTable",
   data: () => ({
@@ -64,10 +66,17 @@ export default {
     resultQuery(){
       if(this.searchQuery){
         return this.fields.filter((item)=>{
-          return this.searchQuery.toLowerCase().split(' ').every(v => item.title.toLowerCase().includes(v))
+          return this.searchQuery.toLowerCase().split(' ').every(v => item.title.toLowerCase().includes(v));
         })
       }else{
         return this.fields;
+      }
+    },
+    debounceSearch(callback, delay = 800) {
+      return (...args) => {
+        setTimeout(() => {
+          callback(...args)
+        }, delay)
       }
     }
   },
@@ -80,6 +89,9 @@ export default {
     },
     onUpdate(id) {
       this.$emit("edit-field", id);
+    },
+    formatDate(date) {
+      return moment(date).format("MMMM Do YYYY")
     }
   }
 };

@@ -46,8 +46,7 @@ export default {
     field: {},
     isDisabled: true,
     currentPage: 1,
-    perPage: 5,
-    searchRes: null
+    perPage: 5
   }),
   components: {
     Form,
@@ -59,7 +58,7 @@ export default {
       fields: state => state.DataTable.fields
     }),
     total() {
-      return this.fields.length;
+      return this.$store.getters['DataTable/fieldLength']
     }
   },
   methods: {
@@ -125,6 +124,6 @@ export default {
   },
   async created() {
     this.fetchFields();
-  },
+  }
 };
 </script>
