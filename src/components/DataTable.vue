@@ -71,13 +71,6 @@ export default {
       }else{
         return this.fields;
       }
-    },
-    debounceSearch(callback, delay = 800) {
-      return (...args) => {
-        setTimeout(() => {
-          callback(...args)
-        }, delay)
-      }
     }
   },
   methods: {
